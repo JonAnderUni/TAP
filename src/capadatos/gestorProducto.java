@@ -2,42 +2,49 @@ package capadatos;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import Producto;
+import db.controladorDB;
 
 public class gestorProducto {
 	
-	@PersistenceUnit
-	EntityManagerFactory emf;
-	
-	@PersistenceContext
-	private EntityManager em = emf.createEntityManager();
-	
+	private controladorDB controler = new controladorDB();
 	private List<Producto> lista = new ArrayList<Producto>();
+	private static gestorProducto mGestor;
 	
-	public gestorProducto() {}
+	private gestorProducto() {}
 	
-	public EntityManager getGestorProducto() {
-		
-		return(em);
+	public static gestorProducto getGestorProducto() {
+		return(mGestor); //Hay que retornar un gestorProducto
 	}
 	
 	public void addProducto(Producto p) {
 		
 		if(lista.isEmpty()) {
-			lista = em.createNamedQuery("producto.findAll").getResultList();
+			lista = controler.getGestorDB().getLista(); //Recibe una lista de todos los productos que hay en BD
 		}
 		
-		lista.add(p);
-		em.persist(p);
+		lista.add(p); //Añade el producto a la lista de productos
+		controler.getGestorDB().anadirProducto(p.getNombre(), p.getPrecio(), p.getLocation()); //Añade el producto ->
+		//a la BD
 		
 	}
 	
-	public String getLocation(int Id) {
+	public void delProducto(Producto p) {
 		
-		Producto p = em.find(Producto.class, Id);
+		if(lista.isEmpty()) {
+			lista = controler.getGestorDB().getLista();
+		}
 		
-		return(p.getLocation());
+		lista.remove(p); //Elimina el producto de la lista de productos
+		controler.getGestorDB().quitarProducto(p.getNombre(), p.getPrecio(), p.getLocation()); //Elimina el producto ->
+		//de la base de datos
+		
+	}
+	
+	public String getLocation(int Id) { //Obtiene la localización de un producto mediante su Id
+		
+		String location = controler.getGestorDB().getLocalizacion(Id);
+		
+		return(location);
 	}
 
 }
