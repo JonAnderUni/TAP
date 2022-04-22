@@ -24,6 +24,10 @@ public class ControladorDB {
 	}
 	
 	private ControladorDB() {
+		
+	}
+	
+	public ArrayList<Producto> getLista(){
 		try {
 			try {
 				Class.forName(driver);
@@ -46,9 +50,6 @@ public class ControladorDB {
 		} catch (Exception e) {
 			System.err.println("Error del primer try: " + e.getMessage());
 		}
-	}
-	
-	public ArrayList<Producto> getLista(){
 		ArrayList<Producto> lista = new ArrayList<Producto>();
 		try {
 			Statement st = conn.createStatement();
@@ -66,6 +67,28 @@ public class ControladorDB {
 	}
 	
 	public void anadirProducto(String desc, float precio, String loc) {
+		try {
+			try {
+				Class.forName(driver);
+				conn = DriverManager.getConnection(url + dbName, usuario, pass);
+				
+				if (!conn.isClosed())
+					System.out.println("Conectado a las base de datos");
+				
+			} catch (ClassNotFoundException e) {
+				System.err.println("Error al registrar el driver de MySQL: " + e.getMessage());
+			} finally {
+				try {
+					if(conn != null) 
+						conn.close();
+				} catch (SQLException e) {
+					System.err.println("Error al cerrar la conexion" + e.getMessage());
+				 }
+			}
+			
+		} catch (Exception e) {
+			System.err.println("Error del primer try: " + e.getMessage());
+		}
 		try {
 			Statement st = conn.createStatement();
 			String sql = "INSERT INTO producto (nombre, precio, localizacion) values (" + desc + ", " + String.valueOf(precio) + ", " + loc + ")";
