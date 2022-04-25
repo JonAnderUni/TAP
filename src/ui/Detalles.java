@@ -23,7 +23,7 @@ public class Detalles extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(212, 175, 89, 23);
+		btnNewButton.setBounds(351, 265, 89, 23);
 		add(btnNewButton);
 
 	}

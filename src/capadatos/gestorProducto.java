@@ -7,8 +7,8 @@ import db.ControladorDB;
 public class gestorProducto {
 	
 	
-	private List<Producto> lista = new ArrayList<Producto>();
-	private List<Tiendas> listaTiendas = new ArrayList<Tiendas>();
+	private ArrayList<Producto> lista = new ArrayList<Producto>();
+	private ArrayList<Tiendas> listaTiendas = new ArrayList<Tiendas>();
 	private static gestorProducto mGestor;
 	
 	private gestorProducto() {
@@ -19,7 +19,7 @@ public class gestorProducto {
 		return(mGestor); //Hay que retornar un gestorProducto
 	}
 	
-	public List<Producto> getLista(String busqueda){
+	public ArrayList<Producto> getLista(String busqueda){
 		
 		lista = ControladorDB.getControladorDB().getLista(busqueda);
 		

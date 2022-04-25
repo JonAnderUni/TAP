@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import capadatos.Producto;
+import capadatos.gestorProducto;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -14,6 +18,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
@@ -59,10 +67,13 @@ public class Busqueda extends JFrame {
 		JLabel lblNewLabel = new JLabel("Introduzca el producto a buscar: ");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblNewLabel.setBounds(10, 38, 395, 33);
+		lblNewLabel.setBounds(10, 38, 604, 33);
 		contentPane.add(lblNewLabel);
-		JList list = new JList();
 		
+		JList list = new JList();
+		JList list_1 = new JList();
+		
+		//Boton continuar
 		JButton btnNewButton_1 = new JButton("Localizar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -79,15 +90,21 @@ public class Busqueda extends JFrame {
 		
 		
 		
+		
+		
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.setBackground(Color.WHITE);
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DefaultListModel modelo = new DefaultListModel();
-				//Pruebas
-				modelo.addElement("Articulo 1");
-				modelo.addElement("Articulo 2");
-				modelo.addElement("Articulo 3");
+				
+				ArrayList<Producto> lista = gestorProducto.getGestorProducto().getLista(textField.getText());
+				
+				for(Producto prod: lista)
+				{
+				modelo.addElement(prod.getNombre());
+				}
 		
 				list.setModel(modelo); //Parte de gestion, aqui debera ir la lista de objetos relacionados con la busqueda.
 				
@@ -95,6 +112,7 @@ public class Busqueda extends JFrame {
 				btnNewButton_1.setVisible(true);
 			}
 		});
+		
 		btnNewButton.setBounds(525, 120, 89, 23);
 		contentPane.add(btnNewButton);
 		
@@ -108,9 +126,52 @@ public class Busqueda extends JFrame {
 				return values[index];
 			}
 		});
-		list.setBounds(10, 141, 604, 235);
+
+		list_1.setModel(new AbstractListModel() {
+			String[] values = new String[] {""};
+			public int getSize() {
+				return values.length;
+			}
+			public Object getElementAt(int index) {
+				return values[index];
+			}
+		});
+		
+		
+		MouseListener mouseListener = new MouseAdapter() {
+		    public void mouseClicked(MouseEvent e) {
+		        if (e.getClickCount() == 1) {
+
+		         
+		           DefaultListModel model2 = new DefaultListModel();
+		           
+		           String nombreItem = (String) ((JList) e.getSource()).getSelectedValue();
+		           
+		           Producto prod = gestorProducto.getGestorProducto().getProducto(nombreItem);
+		           
+		           String descripcion = prod.getDescripcion();
+		           String precio = prod.getPrecio();
+		        
+		         
+		           model2.addElement("Producto: " + nombreItem);
+		           model2.addElement("Precio: " + precio);
+		           model2.addElement("Descripcion: " + descripcion);
+		           list_1.setModel(model2);
+		         }
+		    }
+		};
+		list.addMouseListener(mouseListener);
+		
+		
+		list.setBounds(10, 141, 604, 120);
 		contentPane.add(list);
 		
+		
+		list_1.setBounds(10, 254, 604, 120);
+		contentPane.add(list_1);
+		
+		
+	
 	
 	}
 }
