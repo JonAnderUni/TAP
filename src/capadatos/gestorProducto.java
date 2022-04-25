@@ -19,27 +19,11 @@ public class gestorProducto {
 		return(mGestor); //Hay que retornar un gestorProducto
 	}
 	
-	public void addProducto(Producto p) {
+	public List<Producto> getLista(String busqueda){
 		
-		if(lista.isEmpty()) {
-			lista = ControladorDB.getControladorDB().getLista(); //Recibe una lista de todos los productos que hay en BD
-		}
+		lista = ControladorDB.getControladorDB().getLista(busqueda);
 		
-		lista.add(p); //Añade el producto a la lista de productos
-		ControladorDB.getControladorDB().anadirProducto(p.getNombre(), p.getDesc(), p.getPrecio(), p.getNombreTienda(), p.getTipo()); //Añade el producto ->
-		//a la BD
-	}
-	
-	public void delProducto(Producto p) {
-		
-		if(lista.isEmpty()) {
-			lista = ControladorDB.getControladorDB().getLista();
-		}
-		
-		lista.remove(p); //Elimina el producto de la lista de productos
-		ControladorDB.getControladorDB().quitarProducto(p.getNombre(), p.getDesc(), p.getPrecio(), p.getNombreTienda(), p.getTipo()); //Elimina el producto ->
-		//de la base de datos
-		
+		return(lista);
 	}
 	
 	public Producto getProducto(String nombre) {
