@@ -8,9 +8,12 @@ public class gestorProducto {
 	
 	
 	private List<Producto> lista = new ArrayList<Producto>();
+	private List<Tiendas> listaTiendas = new ArrayList<Tiendas>();
 	private static gestorProducto mGestor;
 	
-	private gestorProducto() {}
+	private gestorProducto() {
+		listaTiendas = ControladorDB.getControladorDB().getTiendas();
+	}
 	
 	public static gestorProducto getGestorProducto() {
 		return(mGestor); //Hay que retornar un gestorProducto
@@ -39,11 +42,21 @@ public class gestorProducto {
 		
 	}
 	
-	public String getLocation(int Id) { //Obtiene la localización de un producto mediante su Id
+	public Tiendas getLocation(String nombre) { //Obtiene la localización de un producto mediante su Id
 		
-		String location = ControladorDB.getControladorDB().getLocalizacion(Id);
+		Producto prd = null;
+		Tiendas shop = null;
 		
-		return(location);
+		for(Producto p:lista)
+			if(p.getNombre().equalsIgnoreCase(nombre))
+				prd = p;
+		
+		if(prd != null)
+			for(Tiendas t:listaTiendas)
+				if(t.getNombre().equalsIgnoreCase(prd.getLocation()))
+					shop = t;
+		
+		return(shop);
 	}
 
 }
