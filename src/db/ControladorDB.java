@@ -13,7 +13,7 @@ public class ControladorDB {
 	private final String pass = "tap";
 	private final String url = "jdbc:mysql://188.166.16.194:3306/";
 	private final String dbName = "tap";
-	private final String driver = "com.mysql.jdbc.Driver";
+	private final String driver = "com.mysql.cj.jdbc.Driver";
 	
 	
 	private static ControladorDB controlador;
@@ -29,6 +29,7 @@ public class ControladorDB {
 	}
 	
 	public ArrayList<Producto> getLista(String pN){
+		ArrayList<Producto> lista = new ArrayList<Producto>();
 		try {
 			try {
 				Class.forName(driver);
@@ -36,6 +37,19 @@ public class ControladorDB {
 				
 				if (!conn.isClosed())
 					System.out.println("Conectado a las base de datos");
+				
+				
+				try {
+					Statement st = conn.createStatement();
+					String sql = "SELECT * FROM producto where nombre='" + pN + "';";
+					ResultSet rs = st.executeQuery(sql);
+					while(rs.next()) {
+						lista.add(new Producto(Integer.parseInt(rs.getString("id")), rs.getString("nombre"), rs.getString("descr"),Float.parseFloat("precio"), rs.getString("nombreTienda"), rs.getString("tipo")));
+						
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				
 			} catch (ClassNotFoundException e) {
 				System.err.println("Error al registrar el driver de MySQL: " + e.getMessage());
@@ -49,22 +63,9 @@ public class ControladorDB {
 			}
 			
 		} catch (Exception e) {
-			System.err.println("Error del primer try: " + e.getMessage());
-		}
-		ArrayList<Producto> lista = new ArrayList<Producto>();
-		try {
-			Statement st = conn.createStatement();
-			String sql = "SELECT * FROM producto where nombre=" + pN;
-			ResultSet rs = st.executeQuery(sql);
-			while(rs.next()) {
-				lista.add(new Producto(Integer.parseInt(rs.getString("id")), rs.getString("nombre"), rs.getString("descr"),Float.parseFloat("precio"), rs.getString("nombreTienda"), rs.getString("tipo")));
-				System.out.println(rs.getString("nombre"));
-				System.out.println(rs.getString("precio"));
-				System.out.println(rs.getString("localizacion"));
-			}
-		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return lista;
 	}
 	
