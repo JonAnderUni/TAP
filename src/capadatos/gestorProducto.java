@@ -26,7 +26,7 @@ public class gestorProducto {
 		}
 		
 		lista.add(p); //Añade el producto a la lista de productos
-		ControladorDB.getControladorDB().anadirProducto(p.getNombre(), p.getPrecio(), p.getLocation()); //Añade el producto ->
+		ControladorDB.getControladorDB().anadirProducto(p.getNombre(), p.getDesc(), p.getPrecio(), p.getNombreTienda(), p.getTipo()); //Añade el producto ->
 		//a la BD
 	}
 	
@@ -37,9 +37,20 @@ public class gestorProducto {
 		}
 		
 		lista.remove(p); //Elimina el producto de la lista de productos
-		ControladorDB.getControladorDB().quitarProducto(p.getNombre(), p.getPrecio(), p.getLocation()); //Elimina el producto ->
+		ControladorDB.getControladorDB().quitarProducto(p.getNombre(), p.getDesc(), p.getPrecio(), p.getNombreTienda(), p.getTipo()); //Elimina el producto ->
 		//de la base de datos
 		
+	}
+	
+	public Producto getProducto(String nombre) {
+		
+		Producto prod=null;
+		
+		for(Producto p:lista)
+			if(p.getNombre().equalsIgnoreCase(nombre))
+				prod = p;
+		
+		return(prod);
 	}
 	
 	public Tiendas getLocation(String nombre) { //Obtiene la localización de un producto mediante su Id
@@ -53,7 +64,7 @@ public class gestorProducto {
 		
 		if(prd != null)
 			for(Tiendas t:listaTiendas)
-				if(t.getNombre().equalsIgnoreCase(prd.getLocation()))
+				if(t.getNombre().equalsIgnoreCase(prd.getNombreTienda()))
 					shop = t;
 		
 		return(shop);
