@@ -31,6 +31,7 @@ public class Busqueda extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	Producto productoFinal = null;
 
 	
 	public static void main(String[] args) {
@@ -75,10 +76,12 @@ public class Busqueda extends JFrame {
 		
 		//Boton continuar
 		JButton btnNewButton_1 = new JButton("Localizar");
+	
+		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Detalles detalles = new Detalles();
+				Detalles detalles = new Detalles(productoFinal);
 				setContentPane(detalles);
 				validate();
 				
@@ -157,6 +160,8 @@ public class Busqueda extends JFrame {
 		           model2.addElement("Precio: " + Float.toString(precio) + "€");
 		           model2.addElement("Descripcion: " + descripcion);
 		           list_1.setModel(model2);
+		           
+		           productoFinal = prod;
 		         }
 		    }
 		};

@@ -56,7 +56,7 @@ public class StartGUI extends JFrame {
 		ImageIcon logo = new ImageIcon(this.getClass().getResource("/LOGO.png"));
 		JLabel lblNewLabel = new JLabel("Bienvenido a Kapritxitos");
 		
-		setSize(640,460);
+		setSize(630,470);
 		contentPane.setLayout(null);
 		lblNewLabel.setBounds(10, 0, 590, 80);
 		lblNewLabel.setBackground(Color.WHITE);
@@ -81,7 +81,7 @@ public class StartGUI extends JFrame {
 		
 		
 		
-		btnNewButton.setBounds(10, 369, 590, 28);
+		btnNewButton.setBounds(12, 382, 606, 28);
 		contentPane.add(btnNewButton);
 	}
 
