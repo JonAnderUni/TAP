@@ -78,7 +78,7 @@ public class Busqueda extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Detalles detalles = new Detalles(/*Aqui habria que pasar el objeto de la lista que queremos trackear*/);
+				Detalles detalles = new Detalles();
 				setContentPane(detalles);
 				validate();
 				
@@ -97,7 +97,7 @@ public class Busqueda extends JFrame {
 		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DefaultListModel modelo = new DefaultListModel();
+				DefaultListModel<String> modelo = new DefaultListModel();
 				
 				ArrayList<Producto> lista = gestorProducto.getGestorProducto().getLista(textField.getText());
 				
@@ -108,7 +108,7 @@ public class Busqueda extends JFrame {
 		
 				list.setModel(modelo); //Parte de gestion, aqui debera ir la lista de objetos relacionados con la busqueda.
 				
-				//gestor.buscaLista(textField.getText())
+				
 				btnNewButton_1.setVisible(true);
 			}
 		});
@@ -143,18 +143,18 @@ public class Busqueda extends JFrame {
 		        if (e.getClickCount() == 1) {
 
 		         
-		           DefaultListModel model2 = new DefaultListModel();
+		           DefaultListModel<String> model2 = new DefaultListModel();
 		           
 		           String nombreItem = (String) ((JList) e.getSource()).getSelectedValue();
 		           
 		           Producto prod = gestorProducto.getGestorProducto().getProducto(nombreItem);
 		           
-		           String descripcion = prod.getDescripcion();
-		           String precio = prod.getPrecio();
-		        
+		           String descripcion = prod.getDesc();
+		           float precio = prod.getPrecio();
+		           
 		         
 		           model2.addElement("Producto: " + nombreItem);
-		           model2.addElement("Precio: " + precio);
+		           model2.addElement("Precio: " + Float.toString(precio) + "€");
 		           model2.addElement("Descripcion: " + descripcion);
 		           list_1.setModel(model2);
 		         }

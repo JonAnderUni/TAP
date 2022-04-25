@@ -16,6 +16,9 @@ public class gestorProducto {
 	}
 	
 	public static gestorProducto getGestorProducto() {
+		if (mGestor == null)
+			mGestor = new gestorProducto();
+		
 		return(mGestor); //Hay que retornar un gestorProducto
 	}
 	
