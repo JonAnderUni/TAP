@@ -4,15 +4,19 @@ public class Producto{
 	
 	private int id;
 	private String nombre;
+	private String desc;
 	private float precio;
-	private String location;
+	private String nombreTienda;
+	private String tipo;
 	
-	public Producto(int id, String nombre, float precio, String location) {
+	public Producto(int id, String nombre, String desc, float precio, String tienda, String tipo) {
 		
 		this.id = id;;
 		this.nombre = nombre;
+		this.desc = desc;
 		this.precio = precio;
-		this.location = location;
+		this.nombreTienda = tienda;
+		this.tipo = tipo;
 		
 	}
 	
@@ -25,15 +29,23 @@ public class Producto{
 		
 		return(nombre);
 	}
+	
+	public String getDesc() {
+		return(desc);
+	}
 
 	public float getPrecio() {
 		
 		return(precio);
 	}
 
-	public String getLocation() {
+	public String getNombreTienda() {
 		
-		return(location);
+		return(nombreTienda);
+	}
+	
+	public String getTipo() {
+		return(tipo);
 	}
 
 }
