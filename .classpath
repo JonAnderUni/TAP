@@ -13,9 +13,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="/home/jon/eclipse-workspace/GoogleMaps-JavaSwing-master/lib/AbsoluteLayout.jar"/>
-	<classpathentry kind="lib" path="/home/jon/eclipse-workspace/GoogleMaps-JavaSwing-master/lib/jxbrowser-6.23.1.jar"/>
-	<classpathentry kind="lib" path="/home/jon/eclipse-workspace/GoogleMaps-JavaSwing-master/lib/KControls.jar"/>
-	<classpathentry kind="lib" path="/home/jon/eclipse-workspace/GoogleMaps-JavaSwing-master/lib/MyLicense-1.0.jar"/>
+	<classpathentry kind="lib" path="librerias/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="librerias/jxbrowser-6.23.1.jar"/>
+	<classpathentry kind="lib" path="librerias/KControls.jar"/>
+	<classpathentry kind="lib" path="librerias/MyLicense-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
