@@ -44,6 +44,7 @@ public class ControladorDB {
 					String sql = "SELECT * FROM producto where nombre='" + pN + "';";
 					ResultSet rs = st.executeQuery(sql);
 					while(rs.next()) {
+						System.out.println(rs.getString("id"));
 						lista.add(new Producto(Integer.parseInt(rs.getString("id")), rs.getString("nombre"), rs.getString("descr"),Float.parseFloat("precio"), rs.getString("nombreTienda"), rs.getString("tipo")));
 						
 					}
