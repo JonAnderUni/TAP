@@ -45,7 +45,8 @@ public class ControladorDB {
 					ResultSet rs = st.executeQuery(sql);
 					while(rs.next()) {
 						System.out.println(rs.getString("id"));
-						lista.add(new Producto(Integer.parseInt(rs.getString("id")), rs.getString("nombre"), rs.getString("descr"),Float.parseFloat("precio"), rs.getString("nombreTienda"), rs.getString("tipo")));
+						System.out.println(rs.getFloat("precio"));
+						lista.add(new Producto(Integer.parseInt(rs.getString("id")), rs.getString("nombre"), rs.getString("descr"),rs.getFloat("precio"), rs.getString("nombreTienda"), rs.getString("tipo")));
 						
 					}
 				} catch (SQLException e) {
@@ -114,6 +115,14 @@ public class ControladorDB {
 				if (!conn.isClosed())
 					System.out.println("Conectado a las base de datos");
 				
+				Statement st = conn.createStatement();
+				String sql = "SELECT * FROM tiendas";
+				ResultSet rs = st.executeQuery(sql);
+				while(rs.next()) {
+					lista.add(new Tiendas(Integer.parseInt(rs.getString("idTienda")),rs.getString("nombre"),rs.getFloat("latitud"), rs.getFloat("longitud")));
+					
+				}
+				
 			} catch (ClassNotFoundException e) {
 				System.err.println("Error al registrar el driver de MySQL: " + e.getMessage());
 			} finally {
@@ -126,19 +135,9 @@ public class ControladorDB {
 			}
 			
 		} catch (Exception e) {
-			System.err.println("Error del primer try: " + e.getMessage());
+			System.err.println("Error del primer try en getTienda: " + e.getMessage());
 		}
-		try {
-			Statement st = conn.createStatement();
-			String sql = "SELECT * FROM tiendas";
-			ResultSet rs = st.executeQuery(sql);
-			while(rs.next()) {
-				lista.add(new Tiendas(Integer.parseInt(rs.getString("id")),rs.getString("nombre"),Float.parseFloat(rs.getString("latitud")), Float.parseFloat(rs.getString("longitud"))));
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		
 		
 		return lista;
