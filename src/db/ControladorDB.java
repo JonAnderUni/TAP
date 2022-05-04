@@ -10,10 +10,11 @@ import capadatos.Tiendas;
 public class ControladorDB {
 	Connection conn = null;
 	private final String usuario = "tap";
-	private final String pass = "tap";
+	private final String pass = "tapfinal2022";
 	private final String url = "jdbc:mysql://188.166.16.194:3306/";
 	private final String dbName = "tap";
 	private final String driver = "com.mysql.cj.jdbc.Driver";
+	private final String url2 = "jdbc:mysql://209.97.135.139:3306/";
 	
 	
 	private static ControladorDB controlador;
