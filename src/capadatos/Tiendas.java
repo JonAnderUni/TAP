@@ -4,15 +4,13 @@ public class Tiendas {
 	
 	private int id;
 	private String nombre;
-	private float lat;
-	private float lngtd;
+
 	
-	public Tiendas(int id, String nombre, float lat, float lngtd) {
+	public Tiendas(int id, String nombre) {
 		
 		this.id = id;
 		this.nombre = nombre;
-		this.lat = lat;
-		this.lngtd = lngtd;
+		
 		
 	}
 	
@@ -24,12 +22,6 @@ public class Tiendas {
 		return(nombre);
 	}
 	
-	public float getLat() {
-		return(lat);
-	}
-	
-	public float getLng() {
-		return(lngtd);
-	}
+
 
 }

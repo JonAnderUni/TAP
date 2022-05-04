@@ -120,7 +120,7 @@ public class ControladorDB {
 				String sql = "SELECT * FROM tiendas";
 				ResultSet rs = st.executeQuery(sql);
 				while(rs.next()) {
-					lista.add(new Tiendas(Integer.parseInt(rs.getString("idTienda")),rs.getString("nombre"),rs.getFloat("latitud"), rs.getFloat("longitud")));
+					lista.add(new Tiendas(Integer.parseInt(rs.getString("idTienda")),rs.getString("nombre")));
 					
 				}
 				
