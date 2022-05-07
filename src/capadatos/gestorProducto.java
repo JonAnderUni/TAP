@@ -7,8 +7,8 @@ import db.ControladorDB;
 public class gestorProducto {
 	
 	
-	private ArrayList<Producto> lista = new ArrayList<Producto>();
-	private ArrayList<Tiendas> listaTiendas = new ArrayList<Tiendas>();
+	private ArrayList<Producto> listaProducto = new ArrayList<Producto>();
+	private ArrayList<Tienda> listaTiendas = new ArrayList<Tienda>();
 	private static gestorProducto mGestor;
 	
 	private gestorProducto() {
@@ -24,33 +24,33 @@ public class gestorProducto {
 	
 	public ArrayList<Producto> getLista(String busqueda){
 		
-		lista = ControladorDB.getControladorDB().getLista(busqueda);
+		listaProducto = ControladorDB.getControladorDB().getLista(busqueda);
 		
-		return(lista);
+		return(listaProducto);
 	}
 	
 	public Producto getProducto(String nombre) {
 		
 		Producto prod=null;
 		
-		for(Producto p:lista)
+		for(Producto p:listaProducto)
 			if(p.getNombre().equalsIgnoreCase(nombre))
 				prod = p;
 		
 		return(prod);
 	}
 	
-	public Tiendas getLocation(String nombre) { //Obtiene la localización de un producto mediante su Id
+	public Tienda getLocation(String nombre) { //Obtiene la localización de un producto mediante su Id
 		
 		Producto prd = null;
-		Tiendas shop = null;
+		Tienda shop = null;
 		
-		for(Producto p:lista)
+		for(Producto p:listaProducto)
 			if(p.getNombre().equalsIgnoreCase(nombre))
 				prd = p;
 		
 		if(prd != null)
-			for(Tiendas t:listaTiendas)
+			for(Tienda t:listaTiendas)
 				if(t.getNombre().equalsIgnoreCase(prd.getNombreTienda()))
 					shop = t;
 		

@@ -5,7 +5,7 @@ import java.sql.*;
 import com.mysql.cj.jdbc.JdbcConnection;
 
 import capadatos.Producto;
-import capadatos.Tiendas;
+import capadatos.Tienda;
 
 public class ControladorDB {
 	Connection conn = null;
@@ -105,8 +105,8 @@ public class ControladorDB {
 		
 	}
 	
-	public ArrayList<Tiendas> getTiendas(){
-		ArrayList<Tiendas> lista = new ArrayList<Tiendas>();
+	public ArrayList<Tienda> getTiendas(){
+		ArrayList<Tienda> lista = new ArrayList<Tienda>();
 		try {
 			try {
 				Class.forName(driver);
@@ -119,7 +119,7 @@ public class ControladorDB {
 				String sql = "SELECT * FROM tiendas";
 				ResultSet rs = st.executeQuery(sql);
 				while(rs.next()) {
-					lista.add(new Tiendas(Integer.parseInt(rs.getString("idTienda")),rs.getString("nombre")));
+					lista.add(new Tienda(Integer.parseInt(rs.getString("idTienda")),rs.getString("nombre")));
 					
 				}
 				

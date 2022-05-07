@@ -1,12 +1,12 @@
 package capadatos;
 
-public class Tiendas {
+public class Tienda {
 	
 	private int id;
 	private String nombre;
 
 	
-	public Tiendas(int id, String nombre) {
+	public Tienda(int id, String nombre) {
 		
 		this.id = id;
 		this.nombre = nombre;
