@@ -40,11 +40,15 @@ public class StartGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public StartGUI() {
+		setTitle("Kapritxitos");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 460);
 		getContentPane().setLayout(null);
 		
+		 ImageIcon imagen = new ImageIcon("IMG/LOGO.png");
+	        this.setIconImage(imagen.getImage());
+	        
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

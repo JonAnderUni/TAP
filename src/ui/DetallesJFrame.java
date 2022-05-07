@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,6 +44,11 @@ public class DetallesJFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public DetallesJFrame(Producto producto) {
+		setTitle("Kapritxitos");
+		 ImageIcon imagen = new ImageIcon("IMG/LOGO.png");
+	        this.setIconImage(imagen.getImage());
+	        
+		
 		getContentPane().setBackground(Color.WHITE);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

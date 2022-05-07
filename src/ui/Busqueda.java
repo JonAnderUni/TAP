@@ -15,8 +15,11 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -51,6 +54,11 @@ public class Busqueda extends JFrame {
 
 	
 	public Busqueda() {
+		
+		 ImageIcon imagen = new ImageIcon("IMG/LOGO.png");
+	        this.setIconImage(imagen.getImage());
+	        
+	        setTitle("Kapritxitos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 460);
@@ -79,14 +87,23 @@ public class Busqueda extends JFrame {
 		//Boton continuar
 		JButton btnNewButton_1 = new JButton("Localizar");
 	
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(20, 391, 495, 14);
+		contentPane.add(lblNewLabel_1);
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(productoFinal == null)
+				{
+				lblNewLabel_1.setText("Por favor seleccione un producto");
 				
+				}
+				else
+				{
 				DetallesJFrame.main(null, productoFinal);
 				dispose();
-				
+				}
 			}
 		});
 		btnNewButton_1.setBounds(525, 387, 89, 23);
@@ -100,22 +117,35 @@ public class Busqueda extends JFrame {
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.setBackground(Color.WHITE);
 		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setBounds(10, 124, 505, 14);
+		contentPane.add(lblNewLabel_2);
+		
+		
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DefaultListModel<String> modelo = new DefaultListModel();
-				
-				ArrayList<Producto> lista = gestorProducto.getGestorProducto().getLista(textField.getText());
-				
-				for(Producto prod: lista)
+				if(textField.getText().equals(""))
 				{
-				modelo.addElement(prod.getNombre());
+					lblNewLabel_2.setText("Introduzca termino de busqueda");
 				}
-		
-				list.setModel(modelo); //Parte de gestion, aqui debera ir la lista de objetos relacionados con la busqueda.
+				else
+				{
+					DefaultListModel<String> modelo = new DefaultListModel();
+					
+					ArrayList<Producto> lista = gestorProducto.getGestorProducto().getLista(textField.getText());
+					
+					for(Producto prod: lista)
+					{
+					modelo.addElement(prod.getNombre());
+					}
+			
+					list.setModel(modelo); //Parte de gestion, aqui debera ir la lista de objetos relacionados con la busqueda.
+					
+					
 				
+				}
+				}
 				
-				btnNewButton_1.setVisible(true);
-			}
 		});
 		
 		btnNewButton.setBounds(525, 120, 89, 23);
@@ -154,28 +184,32 @@ public class Busqueda extends JFrame {
 		           
 		           Producto prod = gestorProducto.getGestorProducto().getProducto(nombreItem);
 		           
-		           String descripcion = prod.getDesc();
+		           String descripcion = prod.getTipo();
 		           float precio = prod.getPrecio();
 		           
 		         
 		           model2.addElement("Producto: " + nombreItem);
-		           model2.addElement("Precio: " + Float.toString(precio) + "â‚¬");
-		           model2.addElement("Descripcion: " + descripcion);
+		           model2.addElement("Precio: " + Float.toString(precio) + " €");
+		           model2.addElement("Tipo: " + descripcion);
 		           list_1.setModel(model2);
 		           
 		           productoFinal = prod;
+		       	btnNewButton_1.setVisible(true);
 		         }
 		    }
 		};
 		list.addMouseListener(mouseListener);
 		
 		
-		list.setBounds(10, 141, 604, 120);
+		list.setBounds(10, 141, 604, 111);
 		contentPane.add(list);
 		
 		
 		list_1.setBounds(10, 254, 604, 120);
 		contentPane.add(list_1);
+		
+	
+
 		
 		
 	
