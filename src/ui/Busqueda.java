@@ -29,10 +29,10 @@ import javax.swing.AbstractListModel;
 
 public class Busqueda extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
 	private JTextField textField;
 	Producto productoFinal = null;
-
+	public static Busqueda panelGuardado = new Busqueda();
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -48,8 +48,10 @@ public class Busqueda extends JFrame {
 		});
 	}
 	
+
 	
 	public Busqueda() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 460);
 		getContentPane().setLayout(null);
@@ -81,9 +83,9 @@ public class Busqueda extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Detalles detalles = new Detalles(productoFinal);
-				setContentPane(detalles);
-				validate();
+				
+				DetallesJFrame.main(null, productoFinal);
+				dispose();
 				
 			}
 		});

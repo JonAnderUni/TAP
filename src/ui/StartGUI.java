@@ -81,7 +81,7 @@ public class StartGUI extends JFrame {
 		
 		
 		
-		btnNewButton.setBounds(12, 382, 606, 28);
+		btnNewButton.setBounds(12, 382, 592, 28);
 		contentPane.add(btnNewButton);
 	}
 
