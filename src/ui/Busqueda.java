@@ -29,6 +29,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import javax.swing.AbstractListModel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 public class Busqueda extends JFrame {
 
@@ -81,8 +83,14 @@ public class Busqueda extends JFrame {
 		lblNewLabel.setBounds(10, 38, 604, 33);
 		contentPane.add(lblNewLabel);
 		
+	
 		JList list = new JList();
+		
+
+		
 		JList list_1 = new JList();
+		list_1.setBounds(10, 298, 604, 82);
+		contentPane.add(list_1);
 		
 		//Boton continuar
 		JButton btnNewButton_1 = new JButton("Localizar");
@@ -109,10 +117,6 @@ public class Busqueda extends JFrame {
 		btnNewButton_1.setBounds(525, 387, 89, 23);
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.setVisible(false);
-		
-		
-		
-		
 		
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.setBackground(Color.WHITE);
@@ -150,17 +154,6 @@ public class Busqueda extends JFrame {
 		
 		btnNewButton.setBounds(525, 120, 89, 23);
 		contentPane.add(btnNewButton);
-		
-		
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {""};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
 
 		list_1.setModel(new AbstractListModel() {
 			String[] values = new String[] {""};
@@ -177,7 +170,7 @@ public class Busqueda extends JFrame {
 		    public void mouseClicked(MouseEvent e) {
 		        if (e.getClickCount() == 1) {
 
-		         
+		         System.out.println(e);
 		           DefaultListModel<String> model2 = new DefaultListModel();
 		           
 		           String nombreItem = (String) ((JList) e.getSource()).getSelectedValue();
@@ -198,16 +191,18 @@ public class Busqueda extends JFrame {
 		         }
 		    }
 		};
+		
+		
+		
+
+		
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setViewportView(list);
+		scrollPane.setBounds(10, 149, 604, 138);
+		contentPane.add(scrollPane);
+	
 		list.addMouseListener(mouseListener);
-		
-		
-		list.setBounds(10, 141, 604, 111);
-		contentPane.add(list);
-		
-		
-		list_1.setBounds(10, 254, 604, 120);
-		contentPane.add(list_1);
-		
 	
 
 		
