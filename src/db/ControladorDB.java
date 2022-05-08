@@ -41,7 +41,7 @@ public class ControladorDB {
 				
 				try {
 					Statement st = conn.createStatement();
-					String sql = "SELECT * FROM producto where nombre='" + pN + "';";
+					String sql = "SELECT * FROM producto where nombre like '%" + pN +"%';";
 					ResultSet rs = st.executeQuery(sql);
 					while(rs.next()) {
 						System.out.println(rs.getString("id"));
