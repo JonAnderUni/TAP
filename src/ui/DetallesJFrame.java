@@ -87,7 +87,7 @@ public class DetallesJFrame extends JFrame {
 		getContentPane().add(lblNewLabel_3);
 		
 		JLabel lblTienda = new JLabel("Tienda:");
-		lblTienda.setBounds(25, 201, 44, 15);
+		lblTienda.setBounds(25, 201, 119, 15);
 		getContentPane().add(lblTienda);
 		
 		JLabel lblA = new JLabel(producto.getNombreTienda());
@@ -96,7 +96,7 @@ public class DetallesJFrame extends JFrame {
 		
 		
 		JButton btnNewButton_1 = new JButton("Nueva Busqueda");
-		btnNewButton_1.setBounds(25, 357, 130, 23);
+		btnNewButton_1.setBounds(25, 357, 170, 23);
 		getContentPane().add(btnNewButton_1);
 		
 		

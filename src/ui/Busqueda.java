@@ -114,7 +114,7 @@ public class Busqueda extends JFrame {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(525, 387, 89, 23);
+		btnNewButton_1.setBounds(498, 387, 116, 23);
 		contentPane.add(btnNewButton_1);
 		btnNewButton_1.setVisible(false);
 		
@@ -182,7 +182,7 @@ public class Busqueda extends JFrame {
 		           
 		         
 		           model2.addElement("Producto: " + nombreItem);
-		           model2.addElement("Precio: " + Float.toString(precio) + " €");
+		           model2.addElement("Precio: " + Float.toString(precio) + " ï¿½");
 		           model2.addElement("Tipo: " + descripcion);
 		           list_1.setModel(model2);
 		           
